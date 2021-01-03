@@ -1,4 +1,7 @@
+@import "./animation.scss";
+
 .form {
+        animation: FadeIn 0.2s;
         &__info {
                 display: flex;
                 flex-direction: column;

@@ -3,8 +3,11 @@ import { FunctionComponent } from "react";
 
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { store } from "../store";
+import { userActions } from "../store/auth";
 
 import "../styles/components/common/form.scss";
+import { useHistory } from "react-router-dom";
 
 export interface LoginFormProps {}
 
@@ -14,12 +17,18 @@ interface LoginUserProps {
 }
 
 const LoginForm: FunctionComponent<LoginFormProps> = () => {
-        const { register, handleSubmit, getValues } = useForm<LoginUserProps>();
+        const { register, handleSubmit, getValues } = useForm<LoginUserProps>({
+                defaultValues: {
+                        username: "op12345678",
+                        password: "123456789",
+                },
+        });
+
+        const history = useHistory();
 
         const onSubmit = React.useCallback(() => {
                 const obj = { username: getValues("username"), password: getValues("password") };
-
-                axios.post("http://localhost:4000/api/auth/login", obj);
+                store.dispatch(userActions.loginUser(obj));
         }, [getValues]);
 
         return (
@@ -27,7 +36,7 @@ const LoginForm: FunctionComponent<LoginFormProps> = () => {
                         <div className="form__name-service">
                                 <h2>Login with</h2>
                                 <div className="form__name-service__logo">
-                                        <img src="./images/logo.svg" alt="" />
+                                        <img src="/images/logo.svg" alt="" />
                                 </div>
                         </div>
                         <form className="form__info" onSubmit={handleSubmit(onSubmit)}>
@@ -45,7 +54,7 @@ const LoginForm: FunctionComponent<LoginFormProps> = () => {
 
                         <div className="form__others">
                                 <div className="form__others__icon">
-                                        <img src="./images/google.svg" alt="" />
+                                        <img src="/images/google.svg" alt="" />
                                 </div>
                                 <a href="https://www.google.com/" className="form__others__text">
                                         Continue with Google
@@ -53,7 +62,7 @@ const LoginForm: FunctionComponent<LoginFormProps> = () => {
                         </div>
                         <div className="form__others">
                                 <div className="form__others__icon">
-                                        <img src="./images/facebook.svg" alt="" />
+                                        <img src="/images/facebook.svg" alt="" />
                                 </div>
                                 <a className="form__others__text" href="https://www.google.com/">
                                         Continue with Facebook
@@ -61,7 +70,7 @@ const LoginForm: FunctionComponent<LoginFormProps> = () => {
                         </div>
                         <div className="form__others">
                                 <div className="form__others__icon">
-                                        <img src="./images/github.svg" alt="" />
+                                        <img src="/images/github.svg" alt="" />
                                 </div>
                                 <a className="form__others__text" href="https://www.google.com/">
                                         Continue with Github

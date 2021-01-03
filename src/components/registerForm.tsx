@@ -18,13 +18,13 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = () => {
 
         const onSubmit = React.useCallback(() => {
                 const obj = {
-                        fullName: getValues("fullName"),
+                        fullname: getValues("fullname"),
                         username: getValues("username"),
                         password: getValues("password"),
                         confirmPassword: getValues("confirmPassword"),
                 };
                 console.log(obj);
-                axios.post("http://localhost:4000/api/auth/register", obj).then((res) => {
+                axios.post("http://localhost:4000/api/auth/register", obj, { withCredentials: true }).then((res) => {
                         console.log(res);
                 });
         }, [getValues]);
@@ -34,12 +34,12 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = () => {
                         <div className="form__name-service">
                                 <h2>Register with</h2>
                                 <div className="form__name-service__logo">
-                                        <img src="./images/logo.svg" alt="" />
+                                        <img src="/images/logo.svg" alt="" />
                                 </div>
                         </div>
                         <form className="form__info" onSubmit={handleSubmit(onSubmit)}>
                                 <label htmlFor="fullName">Full Name</label>
-                                <input type="text" id="fullName" name="fullName" ref={register} />
+                                <input type="text" id="fullName" name="fullname" ref={register} />
                                 <label htmlFor="username">Username</label>
                                 <input type="text" id="username" name="username" ref={register} />
                                 <label htmlFor="password">Password</label>
@@ -56,7 +56,7 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = () => {
 
                         <div className="form__others">
                                 <div className="form__others__icon">
-                                        <img src="./images/google.svg" alt="" />
+                                        <img src="/images/google.svg" alt="" />
                                 </div>
                                 <a href="https://www.google.com/" className="form__others__text">
                                         Continue with Google
@@ -64,7 +64,7 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = () => {
                         </div>
                         <div className="form__others">
                                 <div className="form__others__icon">
-                                        <img src="./images/facebook.svg" alt="" />
+                                        <img src="/images/facebook.svg" alt="" />
                                 </div>
                                 <a className="form__others__text" href="https://www.google.com/">
                                         Continue with Facebook
@@ -72,7 +72,7 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = () => {
                         </div>
                         <div className="form__others">
                                 <div className="form__others__icon">
-                                        <img src="./images/github.svg" alt="" />
+                                        <img src="/images/github.svg" alt="" />
                                 </div>
                                 <a className="form__others__text" href="https://www.google.com/">
                                         Continue with Github
