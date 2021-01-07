@@ -1,10 +1,10 @@
-import { loginUser } from "./action";
+import { loginUser, registerUser } from "./action";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
 
 export interface UserInfo {
         username: string;
-        fullname: string;
+        fullName: string;
         email: string;
         isPremium: boolean;
         role: string;
@@ -12,7 +12,7 @@ export interface UserInfo {
 
 const initialState: UserInfo = {
         username: "",
-        fullname: "",
+        fullName: "",
         email: "",
         isPremium: false,
         role: "USER",
@@ -24,10 +24,14 @@ const auth = createSlice({
         reducers: {
                 updateUserInfo: (state, { payload }: PayloadAction<UserInfo>) => {
                         state.email = payload.email;
-                        state.fullname = payload.fullname;
+                        state.fullName = payload.fullName;
                         state.isPremium = payload.isPremium;
                         state.role = payload.role;
                         state.username = payload.username;
+                },
+                changeUserInfo: (state, { payload }: PayloadAction<UserInfo>) => {
+                        state.email = payload.email;
+                        state.fullName = payload.fullName;
                 },
         },
 });
@@ -35,6 +39,7 @@ const auth = createSlice({
 export const userActions = {
         ...auth.actions,
         loginUser,
+        registerUser,
 };
 export const authReducer = auth.reducer;
 export const authSelecter = (state: RootState) => state.auth;

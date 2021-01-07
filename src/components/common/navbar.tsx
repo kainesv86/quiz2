@@ -45,7 +45,9 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
 
         return (
                 <div className="navbar">
-                        <img src="/images/logo.svg" alt="" />
+                        <Link to="./home">
+                                <img src="/images/logo.svg" alt="" />
+                        </Link>
                         <div className="user-container">
                                 <form className="search-bar">
                                         <input type="text" placeholder="Search" name="input" />
@@ -60,6 +62,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                                                 <button className="btn user__btn" onClick={logout}>
                                                         Logout
                                                 </button>
+                                                <Link className="btn user__btn" to="/user/change"></Link>
                                         </React.Fragment>
                                 ) : (
                                         <React.Fragment>
@@ -69,15 +72,6 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                                                 <Link className="btn user__btn" to="/user/register">
                                                         Register
                                                 </Link>
-                                                <button
-                                                        className="btn user__btn"
-                                                        onClick={() => {
-                                                                console.log("hee");
-                                                                store.dispatch(counterActions.increment());
-                                                        }}
-                                                >
-                                                        Hello
-                                                </button>
                                         </React.Fragment>
                                 )}
                         </div>
