@@ -51,7 +51,7 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = () => {
                                         <input type="password" id="password" name="password" ref={register} />
                                         <label htmlFor="password">Confirm Password</label>
                                         <input type="password" id="confirmPassword" name="confirmPassword" ref={register} />
-                                        <a className="form__forgot" href="http://localhost:4000/api/auth/google">
+                                        <a className="form__forgot" href="https://www.google.com/">
                                                 Sign in instead?
                                         </a>
                                         <button className="btn" type="submit">

@@ -23,6 +23,7 @@ const auth = createSlice({
         initialState,
         reducers: {
                 updateUserInfo: (state, { payload }: PayloadAction<UserInfo>) => {
+                        console.log(payload);
                         state.email = payload.email;
                         state.fullName = payload.fullName;
                         state.isPremium = payload.isPremium;
