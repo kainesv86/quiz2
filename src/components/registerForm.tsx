@@ -34,7 +34,7 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = () => {
         }, [getValues]);
 
         return (
-                <div className="container">
+                <div className="container container__for">
                         <div className="form">
                                 <div className="form__name-service">
                                         <h2>Register with</h2>
