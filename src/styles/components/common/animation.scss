@@ -6,19 +6,11 @@
                 opacity: 1;
         }
 }
-@keyframes MovingRight {
+@keyframes SlideIn {
         0% {
-                transform: translateX(-50%);
+                transform: translateX(20%);
         }
         100% {
                 transform: translateX(0%);
-        }
-}
-@keyframes MovingLeft {
-        0% {
-                transform: translateX(50%);
-        }
-        100% {
-                transform: translate(0%);
         }
 }

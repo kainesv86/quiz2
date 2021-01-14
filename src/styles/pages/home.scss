@@ -1,5 +1,7 @@
 @import "../components/common/animation.scss";
 .home {
+        display: flex;
+        justify-content: center;
         color: #fefefe;
         animation: FadeIn 0.2s;
         display: flex;

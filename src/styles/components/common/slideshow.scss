@@ -7,19 +7,13 @@
         &__slide {
                 background-color: blue;
                 overflow: hidden;
-                & .moving-right {
-                        animation: MovingRight 2s;
-                }
-                & .moving-left {
-                        flex-direction: row-reverse;
-                        animation: MovingLeft 2s;
-                }
                 &__container {
-                        width: 200%;
+                        width: inherit;
                         height: 100%;
                         display: flex;
+                        transition: 1s;
                         & img {
-                                width: 50%;
+                                width: 100%;
                                 height: 100%;
                                 object-fit: cover;
                         }

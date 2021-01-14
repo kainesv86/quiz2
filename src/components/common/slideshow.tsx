@@ -42,18 +42,18 @@ const SlideShow: React.FunctionComponent<SlideShowProps> = () => {
                 [setPrevDot, currentDot]
         );
 
-        const slideChange = React.useMemo(() => {
-                if (prevDot > currentDot) return " moving-right";
-                if (prevDot < currentDot) return " moving-left";
-                return "";
-        }, [prevDot, currentDot]);
-
         return (
                 <div className="slideshow">
                         <div className="slideshow__slide">
-                                <div className={"slideshow__slide__container" + slideChange}>
-                                        <img src={images.img[currentDot]} alt="" />
-                                        <img src={images.img[prevDot]} alt="" />
+                                <div
+                                        style={{ transform: `translateX(-${currentDot * 100}%)` }}
+                                        className={prevDot !== currentDot ? "slideshow__slide__container slide-in" : "slideshow__slide__container"}
+                                >
+                                        <img src={images.img[0]} alt="" />
+                                        <img src={images.img[1]} alt="" />
+                                        <img src={images.img[2]} alt="" />
+                                        <img src={images.img[3]} alt="" />
+                                        <img src={images.img[4]} alt="" />
                                 </div>
                         </div>
                         <div className="slideshow__content">
