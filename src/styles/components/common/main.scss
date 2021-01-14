@@ -3,7 +3,10 @@
         width: 100%;
         height: 100vh;
         display: flex;
-        align-items: center;
-        padding: 64px 206px;
         flex-direction: column;
+        align-items: center;
+        padding: 64px 208px;
+        &__form {
+                justify-content: center;
+        }
 }

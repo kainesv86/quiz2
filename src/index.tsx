@@ -7,11 +7,6 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "./store/index";
 import { Provider } from "react-redux";
 
-import Cookie from "universal-cookie";
-
-const cookie = new Cookie();
-console.log(cookie.getAll());
-
 ReactDOM.render(
         <BrowserRouter>
                 <Provider store={store}>

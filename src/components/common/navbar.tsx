@@ -2,46 +2,34 @@ import * as React from "react";
 import { FunctionComponent } from "react";
 
 import "../../styles/components/common/navbar.scss";
-import { store, counterActions } from "../../store/auth/counter";
+import { store } from "../../store";
 
-import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
 export interface NavBarProps {}
 
 interface dataProps {
         username: string;
-        fullname: string;
+        fullName: string;
         email: string;
         isPremium: boolean;
         role: string;
 }
-const userDefault: dataProps = { username: "", email: "", fullname: "", isPremium: true, role: "USER" };
+
+const user = store.getState();
+console.log(user);
+
+const userDefault: dataProps = { username: "", email: "", fullName: "", isPremium: true, role: "USER" };
 
 const NavBar: FunctionComponent<NavBarProps> = () => {
-        const history = useHistory();
         const [login, setLogin] = React.useState(false);
         const [user, setUser] = React.useState<dataProps>(userDefault);
-
-        React.useEffect(() => {
-                axios.get<dataProps>("http://localhost:4000/api/user", { withCredentials: true })
-                        .then(({ data }) => {
-                                setLogin(true);
-                                setUser(data);
-                                console.log(data);
-                        })
-                        .catch(() => {
-                                document.cookie = "re-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                                history.push("/user/login");
-                        });
-        }, [history]);
         const logout = () => {
                 document.cookie = "re-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 setLogin(false);
                 setUser(userDefault);
                 window.location.reload();
         };
-        console.log(user);
 
         return (
                 <div className="navbar">
@@ -58,10 +46,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
 
                                 {login && user ? (
                                         <React.Fragment>
-                                                <div className="btn user__btn">{user.fullname}</div>
-                                                <button className="btn user__btn" onClick={logout}>
-                                                        Logout
-                                                </button>
+                                                <div className="btn user__btn">{user.fullName}</div>
                                                 <Link className="btn user__btn" to="/user/change"></Link>
                                         </React.Fragment>
                                 ) : (
@@ -74,6 +59,9 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                                                 </Link>
                                         </React.Fragment>
                                 )}
+                                <button className="btn user__btn" onClick={logout}>
+                                        Logout
+                                </button>
                         </div>
                 </div>
         );

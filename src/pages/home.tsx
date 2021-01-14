@@ -5,6 +5,8 @@ import SlideShow from "../components/common/slideshow";
 import "../styles/components/common/main.scss";
 import "../styles/pages/home.scss";
 
+import "../styles/components/common/main.scss";
+
 export interface HomeProps {}
 
 const Home: FunctionComponent<HomeProps> = () => {
