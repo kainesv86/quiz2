@@ -71,7 +71,7 @@ const SlideShow: React.FunctionComponent<SlideShowProps> = () => {
                                 <div className="slideshow__info">
                                         <h3>{contents.topic[currentDot]}</h3>
                                         <p>{contents.info[currentDot]}</p>
-                                        <a href={contents.links[currentDot]}>Learn more</a>
+                                        <a href={contents.links[currentDot]}>Learn more →</a>
                                 </div>
                         </div>
                 </div>
