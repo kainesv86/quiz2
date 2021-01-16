@@ -1,7 +1,9 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
+import BurgerBar from "./burgerBar";
 
 import "../../styles/components/common/navbar.scss";
+import "../../styles/components/common/burgerBar.scss";
 
 import { Link } from "react-router-dom";
 
@@ -11,24 +13,11 @@ import { useSelector } from "react-redux";
 
 export interface NavBarProps {}
 
-interface dataProps {
-        username: string;
-        fullName: string;
-        email: string;
-        isPremium: boolean;
-        role: string;
-}
-
-const userDefault: dataProps = { username: "", email: "", fullName: "", isPremium: true, role: "USER" };
-
 const NavBar: FunctionComponent<NavBarProps> = () => {
         const authState = useSelector<RootState, AuthState>((state) => state.auth);
-        const [login, setLogin] = React.useState(false);
-        const [user, setUser] = React.useState<dataProps>(userDefault);
+        const [isBurgerClick, setIsBurgerClick] = React.useState(false);
         const logout = () => {
                 document.cookie = "re-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                setLogin(false);
-                setUser(userDefault);
                 window.location.reload();
         };
 
@@ -48,11 +37,13 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                                 {authState.isLogin ? (
                                         <React.Fragment>
                                                 <div className="btn user__btn">{authState.fullName}</div>
-                                                <Link className="btn user__btn" to="/user/change">
-                                                        Update
-                                                </Link>
-                                                <button className="btn user__btn" onClick={logout}>
-                                                        Logout
+                                                <button
+                                                        className={`burger-button ${isBurgerClick ? `burger-button--active` : ``}`}
+                                                        onClick={() => setIsBurgerClick(!isBurgerClick)}
+                                                >
+                                                        <span className="burger-button__stick"></span>
+                                                        <span className="burger-button__stick"></span>
+                                                        <span className="burger-button__stick"></span>
                                                 </button>
                                         </React.Fragment>
                                 ) : (
@@ -66,6 +57,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                                         </React.Fragment>
                                 )}
                         </div>
+                        <BurgerBar isBurgerClick={isBurgerClick} onLogout={logout} />
                 </div>
         );
 };

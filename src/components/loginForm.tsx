@@ -32,7 +32,7 @@ const LoginForm: FunctionComponent<LoginFormProps> = () => {
         }, [getValues]);
 
         return (
-                <div className="container container__form">
+                <div className="form-container">
                         <div className="form">
                                 <div className="form__name-service">
                                         <h2>Login with</h2>

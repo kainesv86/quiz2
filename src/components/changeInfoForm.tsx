@@ -19,9 +19,11 @@ const ChangeInfoForm: React.FunctionComponent<ChangeInfoFormProps> = () => {
                         email: "",
                 },
         });
-        const onSubmit = React.useCallback(() => {}, []);
+        const onSubmit = React.useCallback(() => {
+                console.log("Changed");
+        }, []);
         return (
-                <div className="container">
+                <div className="form-container">
                         <div className="form">
                                 <div className="form__name-service">
                                         <h2>Update information</h2>
