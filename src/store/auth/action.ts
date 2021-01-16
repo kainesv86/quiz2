@@ -1,11 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { http } from "../../service/http";
-import { userActions, UserInfo } from ".";
 
-import { UserLoginDto, UserRegisterDto } from "./dto";
-import { store } from "..";
+import { UserLoginDto, UserRegisterDto, UserInfoDto } from "./dto";
 
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
         data: T;
         message?: string;
         details?: {
@@ -13,25 +11,34 @@ interface ApiResponse<T> {
         };
 }
 
-export const loginUser = createAsyncThunk<{}, UserLoginDto, {}>("loginUser", async (input, thunkApi) => {
-        const { dispatch } = thunkApi;
+export const loginUser = createAsyncThunk<boolean, UserLoginDto, { rejectValue: string }>("loginUser", async (input, thunkApi) => {
+        const { rejectWithValue } = thunkApi;
         try {
-                console.log("Here");
                 await http.post("/auth/login", input);
-                const res = await http.get<ApiResponse<UserInfo>>("/user");
-                dispatch(userActions.updateUserInfo(res.data.data));
+
+                return true;
         } catch (err) {
-                console.log("Gãy");
+                return rejectWithValue("Error");
+        }
+});
+export const getUserInfo = createAsyncThunk<UserInfoDto, void, { rejectValue: string }>("UserInfo", async (_, thunkApi) => {
+        const { rejectWithValue } = thunkApi;
+        try {
+                const res = await http.get<ApiResponse<UserInfoDto>>("/user");
+
+                return res.data.data;
+        } catch (err) {
+                return rejectWithValue("Error");
         }
 });
 
 export const registerUser = createAsyncThunk<{}, UserRegisterDto, {}>("registerUSer", async (input, thunkApi) => {
         const { dispatch } = thunkApi;
         try {
-                await http.post("/auth/register", input);
-                const res = await http.get<UserInfo>("/user");
-                dispatch(userActions.updateUserInfo(res.data));
-                console.log(res);
+                // await http.post("/auth/register", input);
+                // const res = await http.get<UserInfo>("/user");
+                // dispatch(userActions.updateUserInfo(res.data));
+                // console.log(res);
         } catch (err) {
                 console.log(input);
                 console.log("Gãy");

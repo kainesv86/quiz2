@@ -9,3 +9,10 @@ export interface UserRegisterDto {
         fullName: string;
         confirmPassword: string;
 }
+export interface UserInfoDto {
+        username: string;
+        fullName: string;
+        email: string;
+        isPremium: boolean;
+        role: string;
+}

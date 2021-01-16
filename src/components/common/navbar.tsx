@@ -2,9 +2,12 @@ import * as React from "react";
 import { FunctionComponent } from "react";
 
 import "../../styles/components/common/navbar.scss";
-import { store } from "../../store";
 
 import { Link } from "react-router-dom";
+
+import { RootState } from "../../store/index";
+import { AuthState } from "../../store/auth/.";
+import { useSelector } from "react-redux";
 
 export interface NavBarProps {}
 
@@ -16,12 +19,10 @@ interface dataProps {
         role: string;
 }
 
-const user = store.getState();
-console.log(user);
-
 const userDefault: dataProps = { username: "", email: "", fullName: "", isPremium: true, role: "USER" };
 
 const NavBar: FunctionComponent<NavBarProps> = () => {
+        const authState = useSelector<RootState, AuthState>((state) => state.auth);
         const [login, setLogin] = React.useState(false);
         const [user, setUser] = React.useState<dataProps>(userDefault);
         const logout = () => {
@@ -44,10 +45,15 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                                         </button>
                                 </form>
 
-                                {login && user ? (
+                                {authState.isLogin ? (
                                         <React.Fragment>
-                                                <div className="btn user__btn">{user.fullName}</div>
-                                                <Link className="btn user__btn" to="/user/change"></Link>
+                                                <div className="btn user__btn">{authState.fullName}</div>
+                                                <Link className="btn user__btn" to="/user/change">
+                                                        Update
+                                                </Link>
+                                                <button className="btn user__btn" onClick={logout}>
+                                                        Logout
+                                                </button>
                                         </React.Fragment>
                                 ) : (
                                         <React.Fragment>
@@ -59,9 +65,6 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                                                 </Link>
                                         </React.Fragment>
                                 )}
-                                <button className="btn user__btn" onClick={logout}>
-                                        Logout
-                                </button>
                         </div>
                 </div>
         );

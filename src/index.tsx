@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store/index";
 import { Provider } from "react-redux";
+import { userActions } from "./store/auth/.";
 
 ReactDOM.render(
         <BrowserRouter>

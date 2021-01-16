@@ -1,8 +1,6 @@
 import * as React from "react";
 
 import { useForm } from "react-hook-form";
-// import { store } from "../store";
-// import { userActions } from "../store/auth";
 
 import "../styles/components/common/main.scss";
 import "../styles/components/common/form.scss";
@@ -17,8 +15,8 @@ interface ChangeInfoProps {
 const ChangeInfoForm: React.FunctionComponent<ChangeInfoFormProps> = () => {
         const { register, handleSubmit } = useForm<ChangeInfoProps>({
                 defaultValues: {
-                        fullname: "New full name",
-                        email: "New email",
+                        fullname: "",
+                        email: "",
                 },
         });
         const onSubmit = React.useCallback(() => {}, []);
