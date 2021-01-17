@@ -36,15 +36,8 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
 
                                 {authState.isLogin ? (
                                         <React.Fragment>
-                                                <div className="btn user__btn">{authState.fullName}</div>
-                                                <button
-                                                        className={`burger-button ${isBurgerClick ? `burger-button--active` : ``}`}
-                                                        onClick={() => setIsBurgerClick(!isBurgerClick)}
-                                                >
-                                                        <span className="burger-button__stick"></span>
-                                                        <span className="burger-button__stick"></span>
-                                                        <span className="burger-button__stick"></span>
-                                                </button>
+                                                {authState.isLogin ? <div className="btn user__btn">{authState.fullName}</div> : null}
+                                                <BurgerBar isBurgerClick={isBurgerClick} onLogout={logout} setIsBurgerClick={setIsBurgerClick} />
                                         </React.Fragment>
                                 ) : (
                                         <React.Fragment>
@@ -57,7 +50,6 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                                         </React.Fragment>
                                 )}
                         </div>
-                        <BurgerBar isBurgerClick={isBurgerClick} onLogout={logout} />
                 </div>
         );
 };

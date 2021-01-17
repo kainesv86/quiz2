@@ -2,6 +2,7 @@ import * as React from "react";
 import { FunctionComponent } from "react";
 
 import { useForm } from "react-hook-form";
+
 import { store } from "../store";
 import { userActions } from "../store/auth";
 
@@ -23,8 +24,6 @@ const LoginForm: FunctionComponent<LoginFormProps> = () => {
                         password: "123456789",
                 },
         });
-
-        const history = useHistory();
 
         const onSubmit = React.useCallback(() => {
                 const obj = { username: getValues("username"), password: getValues("password") };

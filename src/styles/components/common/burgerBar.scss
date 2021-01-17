@@ -2,7 +2,7 @@
         margin-left: 26px;
         height: 44px;
         width: 44px;
-        background-color: #3f3d56;
+        background-color: #001f3f;
         border: none;
         border-radius: 50%;
         display: flex;
@@ -12,6 +12,11 @@
         outline: none;
         overflow: hidden;
         cursor: pointer;
+        &:hover {
+                & span {
+                        background-color: #0074d9;
+                }
+        }
         & span {
                 transition: 0.5s;
                 &:nth-child(2) {
@@ -20,6 +25,7 @@
         }
         &--active {
                 & span {
+                        background-color: #0074d9;
                         transition: 0.5s;
                         &:nth-child(1) {
                                 transform: rotate(-45deg) translateX(12px);
@@ -43,18 +49,18 @@
 
 .burger-bar {
         padding: 18px 36px;
+        right: 0px;
+        top: 54px;
         position: absolute;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        right: 0;
-        top: 64px;
         width: 400px;
         height: 500px;
-        background-color: #3f3d56;
+        background-color: #001f3f;
         z-index: 1;
         transform-origin: top;
-        transition: 0.5s;
+        transition: 0.4s;
         transform: scaleY(0);
         &--active {
                 transform: scaleY(1);
@@ -62,12 +68,12 @@
         &__list {
                 text-decoration: none;
                 font-size: 18px;
+                width: 100%;
                 margin: 8px 0;
                 color: #fefefe;
                 opacity: 0.8;
                 cursor: pointer;
                 background-color: inherit;
-                border: none;
         }
         & span {
                 background-color: white;

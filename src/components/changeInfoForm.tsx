@@ -1,27 +1,45 @@
 import * as React from "react";
 
 import { useForm } from "react-hook-form";
+import { http } from "../service/http";
 
 import "../styles/components/common/main.scss";
 import "../styles/components/common/form.scss";
 
+import { RootState } from "../store/index";
+import { AuthState, userActions } from "../store/auth/.";
+import { useSelector } from "react-redux";
+import { store } from "../store";
+
 export interface ChangeInfoFormProps {}
 
 interface ChangeInfoProps {
-        fullname: string;
+        fullName: string;
         email: string;
 }
 
 const ChangeInfoForm: React.FunctionComponent<ChangeInfoFormProps> = () => {
-        const { register, handleSubmit } = useForm<ChangeInfoProps>({
+        const authState = useSelector<RootState, AuthState>((state) => state.auth);
+
+        const { register, handleSubmit, getValues } = useForm<ChangeInfoProps>({
                 defaultValues: {
-                        fullname: "",
+                        fullName: "",
                         email: "",
                 },
         });
-        const onSubmit = React.useCallback(() => {
-                console.log("Changed");
+
+        const onSubmit = React.useCallback(async () => {
+                const obj = {
+                        fullName: getValues("fullName"),
+                        email: getValues("email"),
+                };
+
+                store.dispatch(userActions.changeUser(obj));
+                // console.log("WTF");
+                // store.dispatch(userActions.getUserInfo());
+                console.log(authState);
         }, []);
+
         return (
                 <div className="form-container">
                         <div className="form">
@@ -29,8 +47,8 @@ const ChangeInfoForm: React.FunctionComponent<ChangeInfoFormProps> = () => {
                                         <h2>Update information</h2>
                                 </div>
                                 <form className="form__info" onSubmit={handleSubmit(onSubmit)}>
-                                        <label htmlFor="fullname">Full Name</label>
-                                        <input type="text" id="fullname" name="fullname" ref={register} />
+                                        <label htmlFor="fullName">Full Name</label>
+                                        <input type="text" id="fullName" name="fullName" ref={register} />
                                         <label htmlFor="Email">Email</label>
                                         <input type="text" id="email" name="email" ref={register} />
                                         <button className="btn" type="submit">

@@ -1,5 +1,5 @@
-import { loginUser, registerUser, getUserInfo } from "./action";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { loginUser, registerUser, getUserInfo, changeUser } from "./action";
+import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "..";
 import { UserInfoDto } from "./dto";
 
@@ -7,7 +7,7 @@ export interface AuthState extends UserInfoDto {
         isLogin: boolean;
 }
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
         isLogin: false,
         username: "",
         fullName: "",
@@ -19,21 +19,14 @@ const initialState: AuthState = {
 const auth = createSlice({
         name: "auth",
         initialState,
-        reducers: {
-                // updateUserInfo: (state, { payload }: PayloadAction<UserInfo>) => {
-                //         console.log(payload);
-                //         state.email = payload.email;
-                //         state.fullName = payload.fullName;
-                //         state.isPremium = payload.isPremium;
-                //         state.role = payload.role;
-                //         state.username = payload.username;
-                // },
-                // changeUserInfo: (state, { payload }: PayloadAction<UserInfo>) => {
-                //         state.email = payload.email;
-                //         state.fullName = payload.fullName;
-                // },
-        },
+        reducers: {},
         extraReducers: (builder) => {
+                builder.addCase(changeUser.fulfilled, (state, { payload }) => {
+                        const newState = { ...state, ...initialState };
+                        newState.isLogin = true;
+                        console.log(newState);
+                        return newState;
+                });
                 builder.addCase(getUserInfo.fulfilled, (state, { payload }) => {
                         const newState = { ...state, ...payload };
                         newState.isLogin = true;
@@ -46,6 +39,9 @@ const auth = createSlice({
                 builder.addCase(loginUser.fulfilled, (state, { payload }) => {
                         state.isLogin = true;
                 });
+                builder.addCase(registerUser.fulfilled, (state, { payload }) => {
+                        state.isLogin = true;
+                });
         },
 });
 
@@ -54,6 +50,7 @@ export const userActions = {
         loginUser,
         registerUser,
         getUserInfo,
+        changeUser,
 };
 export const authReducer = auth.reducer;
 export const authSelecter = (state: RootState) => state.auth;

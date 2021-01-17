@@ -3,25 +3,36 @@ import { Link } from "react-router-dom";
 
 export interface BurgerBarProps {
         isBurgerClick: boolean;
+        setIsBurgerClick: Function;
         onLogout: Function;
 }
 
-const BurgerBar: React.FunctionComponent<BurgerBarProps> = ({ isBurgerClick, onLogout }) => {
+const BurgerBar: React.FunctionComponent<BurgerBarProps> = ({ isBurgerClick, onLogout, setIsBurgerClick }) => {
         return (
-                <div className={`burger-bar ${isBurgerClick ? "burger-bar--active" : " "}`}>
-                        <Link className="burger-bar__list" to="/user/change">
-                                Update information
-                        </Link>
-                        <span className="burger-bar__stick"></span>
-                        <Link className="burger-bar__list" to="/user/change">
-                                Change password
-                        </Link>
-                        <span></span>
-                        <button className="burger-bar__list" onClick={() => onLogout()}>
-                                Logout
+                <React.Fragment>
+                        <button
+                                className={`burger-button ${isBurgerClick ? `burger-button--active` : ``}`}
+                                onClick={() => setIsBurgerClick(!isBurgerClick)}
+                        >
+                                <span className="burger-button__stick"></span>
+                                <span className="burger-button__stick"></span>
+                                <span className="burger-button__stick"></span>
                         </button>
-                        <span></span>
-                </div>
+                        <div className={`burger-bar ${isBurgerClick ? "burger-bar--active" : " "}`}>
+                                <Link className="burger-bar__list" to="/user/change">
+                                        Update information
+                                </Link>
+                                <span className="burger-bar__stick"></span>
+                                <Link className="burger-bar__list" to="/user/change">
+                                        Change password
+                                </Link>
+                                <span></span>
+                                <div className="burger-bar__list" onClick={() => onLogout()}>
+                                        Logout
+                                </div>
+                                <span></span>
+                        </div>
+                </React.Fragment>
         );
 };
 

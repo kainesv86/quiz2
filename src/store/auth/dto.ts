@@ -16,3 +16,8 @@ export interface UserInfoDto {
         isPremium: boolean;
         role: string;
 }
+
+export interface ChangeUserDto {
+        fullName: string;
+        email: string;
+}
