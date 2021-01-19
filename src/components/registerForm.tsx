@@ -29,7 +29,6 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = () => {
                         password: getValues("password"),
                         confirmPassword: getValues("confirmPassword"),
                 };
-                console.log(obj);
                 store.dispatch(userActions.registerUser(obj));
         }, [getValues]);
 

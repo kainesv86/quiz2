@@ -1,0 +1,89 @@
+.burger-button {
+    margin-left: 26px;
+    height: 44px;
+    width: 44px;
+    background-color: #001f3f;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover {
+            & span {
+                    background-color: #0074d9;
+            }
+    }
+    & span {
+            transition: 0.5s;
+            &:nth-child(2) {
+                    margin: 4px 0;
+            }
+    }
+    &--active {
+            & span {
+                    background-color: #0074d9;
+                    transition: 0.5s;
+                    &:nth-child(1) {
+                            transform: rotate(-45deg) translateX(12px);
+                    }
+                    &:nth-child(2) {
+                            transform: rotate(45deg);
+                            width: 48px;
+                    }
+                    &:nth-child(3) {
+                            transform: rotate(-45deg) translateX(-12px);
+                    }
+            }
+    }
+    &__stick {
+            display: block;
+            height: 3px;
+            width: 24px;
+            background-color: #fefefe;
+    }
+}
+
+.burger-bar {
+    padding: 18px 36px;
+    right: 0px;
+    top: 54px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 400px;
+    height: 500px;
+    background-color: #001f3f;
+    z-index: 1;
+    transform-origin: top;
+    transition: 0.4s;
+    transform: scaleY(0);
+    &--active {
+            transform: scaleY(1);
+    }
+    &__list {
+            text-decoration: none;
+            font-size: 18px;
+            width: 100%;
+            & span:hover {
+                    background-color: #0074d9;
+            }
+            color: #fefefe;
+            opacity: 0.8;
+            cursor: pointer;
+            background-color: inherit;
+    }
+    &__button {
+            width: 100%;
+    }
+    & span {
+            background-color: white;
+            display: block;
+            height: 2px;
+            width: 100%;
+    }
+}

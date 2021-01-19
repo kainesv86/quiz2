@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { Redirect, Route, Switch } from "react-router-dom";
 
-import NavBar from "./components/common/navbar";
-import Loading from "./components/common/loading";
+import { NavBar } from "./components/common/navBar";
+import { Loading } from "./components/common/loading";
 import { store, RootState } from "./store/index";
 import { AuthState } from "./store/auth/.";
 import { useSelector } from "react-redux";
@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import "./styles/components/common/main.scss";
 import { getUserInfo } from "./store/auth/action";
 
-const LoginForm = React.lazy(() => import("./components/loginForm"));
+const { LoginForm } = React.lazy(() => import("./components/common/loginForm/index"));
 const RegisterForm = React.lazy(() => import("./components/registerForm"));
 const NotFound = React.lazy(() => import("./pages/notFound"));
 const ChangeInfoForm = React.lazy(() => import("./components/changeInfoForm"));

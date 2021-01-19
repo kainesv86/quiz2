@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import SlideShow from "../components/common/slideshow";
+import { SlideShow } from "../components/common/slideShow";
 
 import "../styles/components/common/main.scss";
 import "../styles/pages/home.scss";

@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../../styles/components/common/slideshow.scss";
+import "./style.scss";
 
 export interface SlideShowProps {}
 interface imagesProps {
@@ -7,7 +7,7 @@ interface imagesProps {
         img: string[];
 }
 
-const SlideShow: React.FunctionComponent<SlideShowProps> = () => {
+export const SlideShow: React.FunctionComponent<SlideShowProps> = () => {
         const [images, setImages] = React.useState<imagesProps>({
                 current: 0,
                 img: [
@@ -77,5 +77,3 @@ const SlideShow: React.FunctionComponent<SlideShowProps> = () => {
                 </div>
         );
 };
-
-export default SlideShow;

@@ -1,9 +1,9 @@
 import * as React from "react";
-import "../../styles/components/common/loading.scss";
+import "./style.scss";
 
 export interface LoadingProps {}
 
-const Loading: React.FunctionComponent<LoadingProps> = () => {
+export const Loading: React.FunctionComponent<LoadingProps> = () => {
         return (
                 <div className="lds-ring">
                         <div></div>
@@ -13,5 +13,3 @@ const Loading: React.FunctionComponent<LoadingProps> = () => {
                 </div>
         );
 };
-
-export default Loading;

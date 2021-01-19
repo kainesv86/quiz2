@@ -1,19 +1,18 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import BurgerBar from "./burgerBar";
+import BurgerBar from "../burgerBar";
 
-import "../../styles/components/common/navbar.scss";
-import "../../styles/components/common/burgerBar.scss";
+import "./style.scss";
 
 import { Link } from "react-router-dom";
 
-import { RootState } from "../../store/index";
-import { AuthState } from "../../store/auth/.";
+import { RootState } from "../../../store/index";
+import { AuthState } from "../../../store/auth";
 import { useSelector } from "react-redux";
 
 export interface NavBarProps {}
 
-const NavBar: FunctionComponent<NavBarProps> = () => {
+export const NavBar: FunctionComponent<NavBarProps> = () => {
         const authState = useSelector<RootState, AuthState>((state) => state.auth);
         const [isBurgerClick, setIsBurgerClick] = React.useState(false);
         const logout = () => {
@@ -53,5 +52,3 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
                 </div>
         );
 };
-
-export default NavBar;
