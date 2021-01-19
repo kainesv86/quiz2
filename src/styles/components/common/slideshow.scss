@@ -5,7 +5,7 @@
         display: grid;
         grid-template-columns: 2fr 1fr;
         &__slide {
-                background-color: blue;
+                background-color: #fefefe;
                 overflow: hidden;
                 &__container {
                         width: inherit;

@@ -19,18 +19,24 @@ const BurgerBar: React.FunctionComponent<BurgerBarProps> = ({ isBurgerClick, onL
                                 <span className="burger-button__stick"></span>
                         </button>
                         <div className={`burger-bar ${isBurgerClick ? "burger-bar--active" : " "}`}>
-                                <Link className="burger-bar__list" to="/user/change">
-                                        Update information
-                                </Link>
-                                <span className="burger-bar__stick"></span>
-                                <Link className="burger-bar__list" to="/user/change">
-                                        Change password
-                                </Link>
-                                <span></span>
-                                <div className="burger-bar__list" onClick={() => onLogout()}>
-                                        Logout
+                                <div className="burger-bar__button">
+                                        <Link className="burger-bar__list" to="/user/change">
+                                                Update information
+                                        </Link>
+                                        <span className="burger-bar__stick"></span>
                                 </div>
-                                <span></span>
+                                <div className="burger-bar__button">
+                                        <Link className="burger-bar__list" to="/user/change">
+                                                Change password
+                                        </Link>
+                                        <span></span>
+                                </div>
+                                <div className="burger-bar__button">
+                                        <div className="burger-bar__list" onClick={() => onLogout()}>
+                                                Logout
+                                        </div>
+                                        <span></span>
+                                </div>
                         </div>
                 </React.Fragment>
         );
