@@ -80,3 +80,4 @@ export const LoginForm: FunctionComponent<LoginFormProps> = () => {
                 </div>
         );
 };
+export default LoginForm;

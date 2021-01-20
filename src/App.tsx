@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import "./styles/components/common/main.scss";
 import { getUserInfo } from "./store/auth/action";
 
-const { LoginForm } = React.lazy(() => import("./components/common/loginForm/index"));
+const LoginForm = React.lazy(() => import("./components/common/loginForm"));
 const RegisterForm = React.lazy(() => import("./components/registerForm"));
 const NotFound = React.lazy(() => import("./pages/notFound"));
 const ChangeInfoForm = React.lazy(() => import("./components/changeInfoForm"));
